@@ -9,11 +9,6 @@ public class IVQDbContext : DbContext
     {
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.UseSerialColumns();
-    }
-
     public DbSet<Category> Categories { get; set; }
     public DbSet<Question> Questions { get; set; }
 }
