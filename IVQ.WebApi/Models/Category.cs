@@ -2,5 +2,6 @@
 
 public class Category
 {
+    public int Id { get; set; }
     public IEnumerable<Question> Questions { get; set; }
 }

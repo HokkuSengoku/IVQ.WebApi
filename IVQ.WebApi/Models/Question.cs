@@ -4,7 +4,6 @@ namespace IVQ.WebApi.Models;
 
 public class Question
 {
-    [Key]
     public int Id { get; set; }
     public int Likes { get; set; }
     public int Answers { get; set; }
