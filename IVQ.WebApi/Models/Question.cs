@@ -11,4 +11,5 @@ public class Question
     public string? Description { get; set; }
     public QuestionComplexity Complexity { get; set; }
     public IEnumerable<Category> Categories { get; set; }
+    public int CategoryId { get; set; }
 }
