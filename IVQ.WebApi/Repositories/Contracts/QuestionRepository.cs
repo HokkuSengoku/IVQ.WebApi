@@ -17,7 +17,7 @@ public class QuestionRepository : IQuestionRepository
 
     private async Task<bool> CategoryExists(int categoryId, int questionId)
     {
-        return await _context.Categories.AnyAsync(c => c.Id == categoryId && c.QuestionId == questionId);
+        throw new NotImplementedException();
     }
 
     public async Task<IEnumerable<Question>> GetAllAsync()

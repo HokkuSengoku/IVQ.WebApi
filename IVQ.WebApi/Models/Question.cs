@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace IVQ.WebApi.Models;
 
 public class Question
@@ -10,6 +9,6 @@ public class Question
     public string Title { get; set; }
     public string? Description { get; set; }
     public QuestionComplexity Complexity { get; set; }
-    public IEnumerable<Category> Categories { get; set; }
-    public int CategoryId { get; set; }
+    public IEnumerable<Category> Categories { get; set; } = new HashSet<Category>();
+   
 }
