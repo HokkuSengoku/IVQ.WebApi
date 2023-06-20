@@ -1,0 +1,35 @@
+﻿version: "3.9"
+
+networks:
+  dev:
+    driver: bridge
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: IVQ.WebApi/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__IVQDb=Server=db;Port=5432;Database=IVQ;User Id=postgres;Password=123;Include Error Detail=True;IntegratedSecurity=True;
+    depends_on:
+      - db
+    networks:
+      - dev
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=IVQ
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - dev
