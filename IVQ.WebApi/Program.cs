@@ -1,15 +1,27 @@
+using System.Text.Json.Serialization;
 using IVQ.WebApi.Data;
+using IVQ.WebApi.WebUtility;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>
+{
+    // serialize enums as strings in api responses (e.g. Role)
+    x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddDbContext<IVQDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("IVQDb")));
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(o =>
+{
+    o.SchemaFilter<RequiredSchemaFilter>();
+    o.SupportNonNullableReferenceTypes();
+});
 
 var app = builder.Build();
 
