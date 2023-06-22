@@ -21,7 +21,6 @@ builder.Services.AddSwaggerGen(o =>
 {
     o.SchemaFilter<RequiredSchemaFilter>();
     o.SupportNonNullableReferenceTypes();
-    o.UseInlineDefinitionsForEnums();
 });
 
 var app = builder.Build();
