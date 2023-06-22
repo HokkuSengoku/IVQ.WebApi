@@ -4,7 +4,7 @@ namespace IVQ.WebApi.ViewModels;
 
 public class CreateQuestionVM
 {
-    public string Title { get; set; }
+    public required string Title { get; set; }
     public string? Description { get; set; }
     public QuestionComplexity Complexity { get; set; }
 }
