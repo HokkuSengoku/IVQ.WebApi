@@ -23,6 +23,16 @@ builder.Services.AddSwaggerGen(o =>
     o.SupportNonNullableReferenceTypes();
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowLocalhost",
+        builder =>
+            builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
+});
+
 var app = builder.Build();
 
 
@@ -46,6 +56,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowLocalhost");
 
 app.UseAuthorization();
 
